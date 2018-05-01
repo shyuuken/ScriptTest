@@ -2,38 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
-{
+public class Test : MonoBehaviour {
 
-    // Use this for initialization
-    void Start()
-    {
-        // 要素数5の配列を初期化する
-        int[] points = new int[5];
+	
+	void Start () {
+        //Bossクラスの変数を宣言してインスタンスを代入
+        Boss lastboss = new Boss();
 
-        // 配列の各要素に値を代入する
-        points[0] = 10;
-        points[1] = 20;
-        points[2] = 30;
-        points[3] = 40;
-        points[4] = 50;
-
-        // 配列の要素をすべて表示する
-        for (int i = 0; i < 5; i++)
+        //攻撃用の関数を呼び出す
+        lastboss.Attack();
+        //防御用の関数を呼び出す
+        lastboss.Defence(3);
+        //魔法攻撃の関数を呼び出す
+        lastboss.Magic(5);
+        //魔法攻撃の関数を10回呼び出す
+        for (int mp = 0; mp < 10; mp++)
         {
-            Debug.Log(points[i]);
+            lastboss.Magic(5);
         }
 
-        // 5回処理を逆順に繰り返す
-        for (int i = 4; i > -1; i--)
-        {
-            Debug.Log(points[i]);
-        }
+
+
     }
 
     // Update is called once per frame
-    void Update()
+    void Update () {
+		
+	}
+
+}
+public class Boss
+{
+    private int hp = 100;          //体力
+    private int power = 25;        //攻撃力
+    private int mp = 53;            //MP
+
+    //攻撃用の関数
+    public void Attack()
     {
+        Debug.Log(this.power + "のダメージを与えた");
 
     }
+
+    //防御用の関数
+    public void Defence(int damege)
+    {
+        Debug.Log(damege + "のダメージを受けた");
+        //残りHPを減らす
+        this.hp -= damege;
+    }
+
+    //mpを消費して魔法攻撃する関数
+    public void Magic(int magicalattack)
+
+    {
+        //MPを消費して魔法攻撃をする
+        this.mp -= magicalattack;
+        Debug.Log("魔法攻撃をした。残りMPは" + mp);
+
+        if (mp <= 0)
+        {
+            //  mpが0以下の場合、「MPが足りないため魔法が使えない。」と表示する
+            Debug.Log("MPが足りないため魔法が使えない。");
+        }
+    }
+
+
 }
