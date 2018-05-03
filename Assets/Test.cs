@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Test : MonoBehaviour {
 
-	
 	void Start () {
         //Bossクラスの変数を宣言してインスタンスを代入
         Boss lastboss = new Boss();
@@ -38,7 +37,6 @@ public class Boss
     public void Attack()
     {
         Debug.Log(this.power + "のダメージを与えた");
-
     }
 
     //防御用の関数
@@ -49,25 +47,19 @@ public class Boss
         this.hp -= damege;
     }
 
-
     //mpを消費して魔法攻撃する関数
     public void Magic(int magicalattack)
-
     {
-
-        if (mp - magicalattack <= 0)
+        if (mp <= magicalattack)
         {
             //魔法攻撃をしようとした際に mpが0以下になる場合、「MPが足りないため魔法が使えない。」と表示する
             Debug.Log("MPが足りないため魔法が使えない。");
         }
-
-        if (mp - magicalattack > 0)
+        else
+        {
             //MPが0より多ければMPを消費して魔法攻撃をする
             this.mp -= magicalattack;
-        Debug.Log("魔法攻撃をした。残りMPは" + mp);
-
-
+            Debug.Log("魔法攻撃をした。残りMPは" + mp);
+        }
     }
-
-
 }
